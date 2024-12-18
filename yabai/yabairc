@@ -1,0 +1,46 @@
+#!/usr/bin/env sh
+
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+# Layout
+# Override default layout for space 2 only
+# yabai -m config --space 2 layout float
+yabai -m config layout                      bsp
+yabai -m config window_placement            second_child
+
+# Padding and gaps
+# Override gaps for space 2 only
+# yabai -m config --space 2 window_gap 0
+yabai -m config top_padding                 5
+yabai -m config bottom_padding              5 
+yabai -m config left_padding                5
+yabai -m config right_padding               5
+yabai -m config window_gap                  5
+
+yabai -m config external_bar                off
+
+# set mouse interaction modifier key (default: fn)
+yabai -m config mouse_modifier fn
+# set modifier + left-click drag to move window (default: move)
+yabai -m config mouse_action1 move
+# set modifier + right-click drag to resize window (default: resize)
+yabai -m config mouse_action2 resize
+# set focus follows mouse mode (default: off, options: off, autoraise, autofocus)
+yabai -m config focus_follows_mouse off
+# set mouse follows focus mode (default: off)
+yabai -m config mouse_follows_focus off
+# modify window shadows (default: on, options: on, off, float)
+# example: show shadows only for floating windows
+yabai -m config window_shadow float
+# window opacity (default: off)
+# example: render all unfocused windows with 90% opacity
+yabai -m config window_opacity off
+yabai -m config active_window_opacity 1.0
+yabai -m config normal_window_opacity 0.9
+
+yabai -m rule --add label=float app="^(Navicat Premium Lite|Docker Desktop|Postman)$"    manage=off  grid=4:4:1:1:2:2
+
+yabai -m rule --add app="^(系统设置|System Settings|Raycast|备忘录|微信|WeChat|网易云音乐|NetEaseMusic|Reminders|Safari|钉钉|DingTalk)$" manage=off 
+
+yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id)"

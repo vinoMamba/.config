@@ -1,0 +1,5 @@
+[user]
+	email = vino0908@outlook.com
+	name  = vino
+[pull]
+	rebase = true
