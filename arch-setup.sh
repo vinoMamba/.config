@@ -1,26 +1,10 @@
 #!/bin/bash
 
-# 报错时退出
-set -e
-
-# 检查 bash 版本并提供明确的升级指导
-if ((BASH_VERSINFO[0] < 4)); then
-  echo "错误: 当前 Bash 版本过低，需要 Bash 4.0 或更高版本"
-  echo "当前 Bash 版本: $BASH_VERSION"
-  echo ""
-  echo "请按照以下步骤升级 Bash:"
-  echo "1. 安装新版本 Bash:    brew install bash"
-  echo "2. 添加到可用 shell:   sudo bash -c 'echo /opt/homebrew/bin/bash >> /etc/shells'"
-  echo "3. 重新运行此脚本:     /opt/homebrew/bin/bash $0"
-  exit 1
-fi
-
 # 配置项定义
 declare -A configs
 configs=(
   ["nvim"]="$HOME/oh-my-dotfiles/nvim:$HOME/.config/nvim"
   ["git"]="$HOME/oh-my-dotfiles/git/gitconfig:$HOME/.gitconfig"
-  ["yabai"]="$HOME/oh-my-dotfiles/yabai:$HOME/.config/yabai"
   ["skhd"]="$HOME/oh-my-dotfiles/skhd:$HOME/.config/skhd"
   ["starship"]="$HOME/oh-my-dotfiles/starship/starship.toml:$HOME/.config/starship.toml"
   ["zsh"]="$HOME/oh-my-dotfiles/zsh/zshrc-mac:$HOME/.zshrc"
