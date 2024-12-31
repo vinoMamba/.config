@@ -54,3 +54,4 @@ eval "$(zoxide init zsh)"
 alias cd="z"
 
 eval "$(starship init zsh)"
+. "/Users/wangxin/.deno/env"
